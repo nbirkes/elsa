@@ -1,4 +1,10 @@
+import { initElsaDb, listDebts } from './repository/pg-elsa';
 
-export function main(): void {
-  console.log('Welcome to Elsa');
+main().catch(console.error);
+
+export async function main(): Promise<void> {
+  await initElsaDb();
+
+  let debts = await listDebts();
+  console.log(JSON.stringify(debts));
 }
